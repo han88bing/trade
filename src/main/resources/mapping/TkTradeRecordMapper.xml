@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.touke.trade.mapper.TkTradeRecordMapper">
+  <resultMap id="BaseResultMap" type="com.touke.trade.pojo.TkTradeRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="order_no" jdbcType="BIGINT" property="orderNo" />
+    <result column="security_code" jdbcType="VARCHAR" property="securityCode" />
+    <result column="security_name" jdbcType="VARCHAR" property="securityName" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="operation_type" jdbcType="VARCHAR" property="operationType" />
+    <result column="trade_type" jdbcType="VARCHAR" property="tradeType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, user_name, order_no, security_code, security_name, quantity, version, 
+    operation_type, trade_type, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tk_trade_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.touke.trade.pojo.TkTradeRecord">
+    insert into tk_trade_record (id, user_id, user_name, 
+      order_no, security_code, security_name, 
+      quantity, version, operation_type, 
+      trade_type, create_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=BIGINT}, #{securityCode,jdbcType=VARCHAR}, #{securityName,jdbcType=VARCHAR}, 
+      #{quantity,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{operationType,jdbcType=VARCHAR}, 
+      #{tradeType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.touke.trade.pojo.TkTradeRecord">
+    insert into tk_trade_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="securityCode != null">
+        security_code,
+      </if>
+      <if test="securityName != null">
+        security_name,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="operationType != null">
+        operation_type,
+      </if>
+      <if test="tradeType != null">
+        trade_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="securityCode != null">
+        #{securityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="securityName != null">
+        #{securityName,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="operationType != null">
+        #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null">
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.touke.trade.pojo.TkTradeRecord">
+    update tk_trade_record
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="securityCode != null">
+        security_code = #{securityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="securityName != null">
+        security_name = #{securityName,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="operationType != null">
+        operation_type = #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null">
+        trade_type = #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.touke.trade.pojo.TkTradeRecord">
+    update tk_trade_record
+    set user_id = #{userId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=BIGINT},
+      security_code = #{securityCode,jdbcType=VARCHAR},
+      security_name = #{securityName,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      operation_type = #{operationType,jdbcType=VARCHAR},
+      trade_type = #{tradeType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+  
+  <!--  自定义sql -->
+  <!-- 根据订单号获取最大版本号 -->
+  <select id="findVersionByOrderNo" parameterType="long" resultType="int">
+  SELECT IFNULL(MAX(version),1)
+	FROM tk_trade_record
+	WHERE order_no = #{orderNo,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 查询列表 -->
+  <select id="listResponseByPage" parameterType="com.touke.trade.vo.request.TradeRecordPageRequest" resultMap="BaseResultMap">
+   select <include refid="Base_Column_List"/>
+     from tk_trade_record
+    <where>
+          <if test="type != null and type !=''">
+            and trade_type = #{type,jdbcType=VARCHAR}
+          </if>
+          <if test="userId != null">
+             and user_id = #{userId,jdbcType=INTEGER}
+          </if>
+           <if test="securityCode != null and securityCode !=''">
+             and security_code = #{securityCode,jdbcType=VARCHAR}
+          </if>
+       </where>
+  </select>
+</mapper>

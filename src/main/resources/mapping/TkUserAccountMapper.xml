@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.touke.trade.mapper.TkUserAccountMapper">
+  <resultMap id="BaseResultMap" type="com.touke.trade.pojo.TkUserAccount">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="security_code" jdbcType="VARCHAR" property="securityCode" />
+    <result column="security_name" jdbcType="VARCHAR" property="securityName" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, name, security_code, security_name, quantity, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tk_user_account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.touke.trade.pojo.TkUserAccount">
+    insert into tk_user_account (id, user_id, name, 
+      security_code, security_name, quantity, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{securityCode,jdbcType=VARCHAR}, #{securityName,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.touke.trade.pojo.TkUserAccount">
+    insert into tk_user_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="securityCode != null">
+        security_code,
+      </if>
+      <if test="securityName != null">
+        security_name,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="securityCode != null">
+        #{securityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="securityName != null">
+        #{securityName,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.touke.trade.pojo.TkUserAccount">
+    update tk_user_account
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="securityCode != null">
+        security_code = #{securityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="securityName != null">
+        security_name = #{securityName,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.touke.trade.pojo.TkUserAccount">
+    update tk_user_account
+    set user_id = #{userId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      security_code = #{securityCode,jdbcType=VARCHAR},
+      security_name = #{securityName,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- 自定义SQL -->
+  <!-- 根据证券代码以及用户ID获取信息 -->
+  <select id="findEntityByCodeUserId" parameterType="map" resultMap="BaseResultMap">
+   SELECT id,
+     user_id,
+	 quantity,
+	 name,
+	 security_code,
+	 security_name 
+	FROM
+		tk_user_account acc 
+	WHERE
+		 acc.security_code = #{code,jdbcType=VARCHAR}
+	 AND acc.user_id = #{userId,jdbcType=INTEGER} 
+  </select>
+  
+  
+  <!-- 根据证券代码以及用户ID查询数量 -->
+  <select id="countByCodeUserId" parameterType="map" resultType="int">
+   SELECT count(1)
+	FROM
+		tk_user_account acc 
+	WHERE
+		 acc.security_code = #{code,jdbcType=VARCHAR}
+	 AND acc.user_id = #{userId,jdbcType=INTEGER} 
+  </select>
+  
+  
+  <!-- 账户变更 购买-->
+  <update id="updateAccountBuy" parameterType="map">
+  update tk_user_account
+    set
+      quantity = quantity + #{quantity,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <!-- 账户变更 卖出-->
+  <update id="updateAccountSell" parameterType="map">
+  update tk_user_account
+    set
+      quantity = quantity - #{quantity,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+      and quantity > 0
+  </update>
+  
+  <!-- 获取个人账户列表 -->
+  <select id="listByUserId" parameterType="int" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+     from tk_user_account
+     where user_id = #{userId,jdbcType=INTEGER}
+  </select>  
+  
+</mapper>

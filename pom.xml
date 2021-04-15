@@ -1,0 +1,248 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-parent</artifactId>
+	<version>2.1.12.RELEASE</version>
+	<relativePath/> <!-- lookup parent from repository -->
+  </parent> 
+  
+  <groupId>com.touke</groupId>
+  <artifactId>trade</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <name>trade</name>
+  <description>trade parent project for Spring Boot</description>
+  
+   <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <pagehelper.version>5.1.11</pagehelper.version>
+        <druid.version>1.1.10</druid.version>
+        <swagger2.version>2.8.0</swagger2.version>
+        <lombok.version>1.18.10</lombok.version>
+        <druid.version>1.1.10</druid.version>
+        <commons-lang3.version>3.3.2</commons-lang3.version>
+        <fastjson.version>1.2.55</fastjson.version>
+        <mysql-connector-java.version>8.0.15</mysql-connector-java.version>
+        <mybatis.version>3.2.8</mybatis.version>
+        <aspectjweaver.version>1.9.1</aspectjweaver.version>
+		<mybatis.spring.version>1.3.1</mybatis.spring.version>
+		<hibernate-validator.version>6.1.2.Final</hibernate-validator.version>
+  </properties>
+ 
+  
+  <dependencies>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+       <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-test</artifactId>
+		  <scope>test</scope>
+	   </dependency>
+	   	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		 <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+	   <dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>${pagehelper.version}</version>
+		</dependency>
+		 <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger2.version}</version>  
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger2.version}</version>  
+        </dependency>
+        <dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		    <version>${druid.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis.spring.version}</version>
+		</dependency>
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-security</artifactId>
+       </dependency>
+       <dependency>
+         <groupId>org.springframework.security.oauth</groupId>
+         <artifactId>spring-security-oauth2</artifactId>
+         <version>2.3.5.RELEASE</version>
+       </dependency>
+       <dependency>
+	       <groupId>org.springframework.security</groupId>
+	       <artifactId>spring-security-jwt</artifactId>
+	       <version>1.0.10.RELEASE</version>
+       </dependency>
+       <dependency>
+	       <groupId>io.jsonwebtoken</groupId>
+	       <artifactId>jjwt</artifactId>
+	       <version>0.9.1</version>
+       </dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql-connector-java.version}</version>
+		</dependency>
+			
+		
+	
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>${hibernate-validator.version}</version>
+		</dependency>   
+		
+		<dependency>
+		    <groupId>org.redisson</groupId>
+		    <artifactId>redisson</artifactId>
+		    <version>3.12.5</version>
+		</dependency> 
+		<!-- jedis客户端 -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+        <dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectjweaver.version}</version>
+		 </dependency>
+    	<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>1.3.7</version>
+		</dependency>
+  </dependencies>
+  
+  <build>
+ 	 	<finalName>${project.artifactId}-${project.version}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		   <plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+		</plugin>
+		
+		<plugin>
+		    <groupId>org.mybatis.generator</groupId>
+		    <artifactId>mybatis-generator-maven-plugin</artifactId>
+		    <version>1.3.2</version>
+		    <configuration>
+		        <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
+		        <verbose>true</verbose>
+		        <overwrite>true</overwrite>
+		    </configuration>
+		    <dependencies>
+		       <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>${mysql-connector-java.version}</version>
+                </dependency>
+		        <dependency>
+		            <groupId>org.mybatis.generator</groupId>
+		            <artifactId>mybatis-generator-core</artifactId>
+		            <version>1.3.7</version>
+		        </dependency>
+		    </dependencies>
+		</plugin>
+		
+		</plugins>
+		
+		
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>application-${spring.profile}.properties</include>
+					<include>application.properties</include>
+					<include>**/*.xml</include>
+					<include>templates/**</include>
+				</includes>
+			</resource>
+		
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+	
+  <profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<spring.profile>dev</spring.profile>
+				<logback.loglevel>DEBUG</logback.loglevel>
+				<logback.output>FILE</logback.output>
+			</properties>
+
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		
+		<profile>
+			<id>prd</id>
+			<properties>
+				<spring.profile>prd</spring.profile>
+				<logback.loglevel>INFO</logback.loglevel>
+				<logback.output>FILE</logback.output>
+				<log.path>/data/logs/instant-web/log/</log.path>
+			</properties>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+		
+		
+	
+		
+	</profiles>
+</project>
